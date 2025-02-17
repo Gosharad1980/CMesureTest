@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../../Sources_Prog_Perso/CMesure"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"cstdio": "cpp",
+			"cfloat": "cpp",
+			"iostream": "cpp",
+			"ostream": "cpp",
+			"limits": "cpp",
+			"cmath": "cpp",
+			"*.txt": "cpp"
+		}
+	}
+}

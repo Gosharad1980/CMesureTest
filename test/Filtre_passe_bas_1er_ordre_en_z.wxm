@@ -1,0 +1,35 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 24.11.0_DevelopmentSnapshot ] */
+/* [wxMaxima: input   start ] */
+/* ça n'existe pas dans Maxima */
+kill(all);
+
+log10(x) := log(x) / log(10.0)$
+
+
+LPF(τ, p) := 1.0/(1.0 + τ*p);
+
+
+/* les différentes façon d'estimer la transformée en z */
+
+/* Méthode des rectangles à gauche          */ p1(Te, Zm) := (1.0 - Zm**1.0)/(Te * Zm**1.0)$                           1.0/p1(Te, Zm);
+/* Méthode des rectangles à droite (Euler)  */ p2(Te, Zm) := (1.0 - Zm**1.0)/(Te)$                                     1.0/p2(Te, Zm);
+/* Méthode des trapèzes                     */ p3(Te, Zm) := (2.0/Te)*((1.0 - Zm**1.0)/(1.0 + Zm**1.0))$               1.0/p3(Te, Zm);
+/* Méthode de Simpson : 2 pts ald 1         */ p4(Te, Zm) := (3.0/Te)*((1.0 - Zm**2.0)/(1.0 + 4.0*Zm**1.0 + Zm**2.0))$ 1.0/p4(Te, Zm);
+
+ratprint : false;
+
+/* différentes discrétisation de la transformée de Laplace */
+
+LPF_z1(τ, Te, Zm) := radcan(LPF(τ, p1(Te, Zm)))$ LPF_z1(τ, Te, Zm);
+LPF_z2(τ, Te, Zm) := radcan(LPF(τ, p2(Te, Zm)))$ LPF_z2(τ, Te, Zm);
+LPF_z3(τ, Te, Zm) := radcan(LPF(τ, p3(Te, Zm)))$ LPF_z3(τ, Te, Zm);
+LPF_z4(τ, Te, Zm) := radcan(LPF(τ, p4(Te, Zm)))$ LPF_z4(τ, Te, Zm);
+
+
+/* [wxMaxima: input   end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 24.11.0_DevelopmentSnapshot"$
