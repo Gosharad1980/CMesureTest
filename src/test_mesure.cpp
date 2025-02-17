@@ -155,33 +155,10 @@ void benchMark1(void)
 	cout << endl;
 }
 
-void benchMark2(void)
-{
-	
-	CMesure A(0, 0);
-	CMesure B(1, 1);
-	CMesure C(0, 0);
-	CMesure D(0, 0);
-
-	C = A * B;	// C = (0, 1.0e260)
-	D = C - A;	// D = (0, 1.0e260)
-
-
-	cout << "A = " << A << endl;
-	cout << "B = " << B << endl;
-	cout << "C = A * B = " << C << endl;
-	cout << "D = C - A = " << D << endl;
-
-	cout << "C == A => " << (C == A ? "VRAI" : "FAUX") << endl;
-	cout << "C != A => " << (C != A ? "VRAI" : "FAUX") << endl;
-	
-	cout << endl;
-}
-
 void test_incertitude_U_egal_RI(void)
 {
     CMesure fc(250000.0);
-    CMesure Ct(0.000000001, 2.0,'P');
+    CMesure Ct(0.000000001, 10.0,'P');
 
     CMesure Rt = 1.0 / (fc * Ct);
 	
@@ -196,9 +173,6 @@ void test_incertitude_U_egal_RI(void)
 
 	cout << "R1 =" << R1 << endl;
 	cout << "ft =" << ft << endl;
-
-    cout << "log10(Rt) = " << log10(Rt) << endl;
-	cout << "trois = " << log2(cbrt(trois)) << endl;
 }
 
 
@@ -210,7 +184,7 @@ double sg_square(double periode, double kTe)
 	else 					   return  0.00; 
 }
 
-void test_incertitude_filtrage_prem_ordre(bool b_print)
+void test_incertitude_filtrage_prem_ordre(void)
 {
 	double periode_square = 4.0;
 
@@ -227,27 +201,29 @@ void test_incertitude_filtrage_prem_ordre(bool b_print)
 	CMesure fac = (1.0 - exp(-2.0 * M_PI * Te/Tf));
 
 
-	if (b_print) cout << "Out = " << Out_eq1 << endl;
-	if (b_print) cout << "Meas = " << Meas << endl;
-	if (b_print) cout << "fac = " << fac << endl;
+	cout << "Out = " << Out_eq1 << endl;
+	cout << "Meas = " << Meas << endl;
+	cout << "fac = " << fac << endl;
 
-	if (b_print) cout << "Out[init].Uc() = " << Out_eq1.Eps() << endl;
-	if (b_print) cout << "Out[init].Uc() = " << Out_eq2.Eps() << endl;
+	cout << "Out[init].Uc() = " << Out_eq1.Eps() << endl;
+	cout << "Out[init].Uc() = " << Out_eq2.Eps() << endl;
 
-	for(int NumIteration = 0; NumIteration < 1000; NumIteration++)
+	for(int NumIteration = 0; NumIteration < 200; NumIteration++)
 	{
 		Meas = CMesure(sg_square(periode_square, NumIteration * Te), 0.01, 'R');
-		// Meas = sg_square(periode_square, NumIteration * Te);
 
-		Out_eq1 = ((1.0 - fac) * Out_eq1_zm1) + (fac *  Meas               ); // equation 1
-		Out_eq2 = (              Out_eq2_zm1) + (fac * (Meas - Out_eq2_zm1)); // equation 2
+		// version distribuée --> IT converge
+		Out_eq1 = ((1.0 - fac) * Out_eq1_zm1) + (fac *  Meas); // equation 1
+
+		// version factorisée --> IT diverge
+		Out_eq2 = (Out_eq2_zm1) + (fac * (Meas - Out_eq2_zm1)); // equation 2
 
 		/*
 		if (b_print) cout << "[" << NumIteration << "]\t-->\t" << Meas << "\t" << Out_eq1_zm1 << endl;
 		if (b_print) cout << "[" << NumIteration << "]\t-->\t" << Meas << "\t" << Out_eq2_zm1 << endl;
 		if (b_print) cout << endl;
 		*/
-		if (b_print) cout << "[" << NumIteration << "]\t-->\t" << Out_eq1_zm1.IT() << "\t" << Out_eq2_zm1.IT() << endl;
+		cout << "[" << NumIteration << "]\t-->\t" << Out_eq1_zm1.IT() << "\t" << Out_eq2_zm1.IT() << endl;
 
 		Out_eq1_zm1 = Out_eq1;
 		Out_eq2_zm1 = Out_eq2;
@@ -304,11 +280,10 @@ int main(int argc, char *argv[])
 {
 
 	//benchMark1();
-	//benchMark2();
-	//test_incertitude_U_egal_RI();
+	test_incertitude_U_egal_RI();
 
-	//test_incertitude_filtrage_prem_ordre(true);
-	test_incertitude_filtrage_prem_ordre_z();
+	test_incertitude_filtrage_prem_ordre();
+	//test_incertitude_filtrage_prem_ordre_z();
 
 	//getchar();
 
