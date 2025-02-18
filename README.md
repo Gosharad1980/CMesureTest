@@ -1,5 +1,5 @@
+# CMesureTest
 Programme de démo de la classe CMesure
-======================================
 
 Liste des installations à faire
 -------------------------------
