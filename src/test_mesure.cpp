@@ -28,7 +28,6 @@ void benchMark1(void)
 	CMesure f;                           // CMesure();
 	CMesure g(0.0);
 
-	char ReInit[MAXCHAR];
 
 
 	cout << "a = " << a << endl;
@@ -276,7 +275,8 @@ void test_incertitude_filtrage_prem_ordre_z(void)
 }
 
 
-int main(int argc, char *argv[])
+//int main(int argc, char *argv[])
+int main(void)
 {
 
 	//benchMark1();
