@@ -174,6 +174,33 @@ void test_incertitude_U_egal_RI(void)
 	cout << "ft =" << ft << endl;
 }
 
+void test_incertitude_w0_FiltrePasseBande(void)
+{
+	CMesure L(1.08 / 1000.0, 5.0, 'P');			// 1.08 mH
+	CMesure Cu(470.0 / 1000000000.0, 5.0, 'P');	// 470.0 nF
+
+	CMesure C = 2.0 * Cu;
+
+	CMesure R1(10.0, 5.0, 'P');		// 10.0 Ohm
+	CMesure R2(100.0, 5.0, 'P');	// 100.0 Ohm
+
+	CMesure w0 = 1.0 / sqrt(L * C);		// rad/s
+	CMesure f0 = w0 / (2.0 * M_PI);		// Hz
+	CMesure Q1 = 1.0 / (R1 * C * w0);
+	CMesure Q2 = 1.0 / (R2 * C * w0);
+
+	cout << "L = " << L << endl;
+	cout << "Cu = " << Cu << endl;
+	cout << "C = " << C << endl;
+	cout << "R1 = " << R1 << endl;
+	cout << "R2 = " << R2 << endl;
+	cout << endl;
+
+	cout << "f0 = " << f0 << endl;
+	cout << "Q1 = " << Q1 << endl;
+	cout << "Q2 = " << Q2 << endl;
+}
+
 
 double sg_square(double periode, double kTe)
 {
@@ -279,13 +306,14 @@ void test_incertitude_filtrage_prem_ordre_z(void)
 int main(void)
 {
 
-	//benchMark1();
-	test_incertitude_U_egal_RI();
+	// benchMark1();
+	// test_incertitude_U_egal_RI();
+	test_incertitude_w0_FiltrePasseBande();
 
-	test_incertitude_filtrage_prem_ordre();
-	//test_incertitude_filtrage_prem_ordre_z();
+	// test_incertitude_filtrage_prem_ordre();
+	// test_incertitude_filtrage_prem_ordre_z();
 
-	//getchar();
+	// getchar();
 
 	return 0;
 }
