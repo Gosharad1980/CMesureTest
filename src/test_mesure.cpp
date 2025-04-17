@@ -24,7 +24,7 @@ void benchMark1(void)
 	CMesure b(2.0, 0.1, 'R');            // CMesure(double v, double it, char loi);
 	CMesure c(-1.0, 0.19);               // CMesure(double v, double it, char loi = 'N');
 	CMesure d(1.0, 0.1, 120.0);          // CMesure(double v, double e, double a);
-	CMesure e((char*)"(3.1+/-0.00005|95.45%)"); // CMesure(char* m);
+	CMesure e((char*)"(3.1 +/- 0.00005 | 95.45%)"); // CMesure(char* m);
 	CMesure f;                           // CMesure();
 	CMesure g(0.0);
 
@@ -93,50 +93,46 @@ void benchMark1(void)
 	b = CMesure(1.0, 0.1);
 	c = CMesure(1.1, 0.1);
 	d = CMesure(1.5, 0.1);
-
-	/*
-	fstream fin("./input.txt", ios::in);
-	fin.getline(ReInit, MAXCHAR, '\n');	a = CMesure(ReInit);
-	fin.getline(ReInit, MAXCHAR, '\n'); b = CMesure(ReInit);
-	fin.getline(ReInit, MAXCHAR, '\n');	c = CMesure(ReInit);
-	fin.getline(ReInit, MAXCHAR, '\n');	d = CMesure(ReInit);
-	fin.close();
-	*/
+	e = CMesure(0.1, 1.0);
 
 	cout << "a = " << a << endl;
 	cout << "b = " << b << endl;
 	cout << "c = " << c << endl;
-	cout << "d = " << d << endl;
+	cout << "d = " << d << "\td.pValue() = " << d.pValue() << endl;
+	cout << "e = " << e << "\te.pValue() = " << e.pValue() << endl;
 	
 
 
 	cout << endl;
 
-	cout << "a == d [ FAUX ] => " << (a==d ? "VRAI" : "FAUX") << endl; // significativement diff�rents
-	cout << "b == c [ VRAI ] => " << (b==c ? "VRAI" : "FAUX") << endl; // insignificativement diff�rents
+	cout << "a == d [ FAUX ] => " << (a==d ? "VRAI" : "FAUX") << endl; // significativement différents
+	cout << "(a - d).pValue() = " << (a - d).pValue() << endl; // significativement différents
 
-	cout << "a != d [ VRAI ] => " << (a!=d ? "VRAI" : "FAUX") << endl; // significativement diff�rents
-	cout << "b != c [ FAUX ] => " << (b!=c ? "VRAI" : "FAUX") << endl; // insignificativement diff�rents
+	cout << "b == c [ VRAI ] => " << (b==c ? "VRAI" : "FAUX") << endl; // insignificativement différents
+	cout << "(b - c).pValue() = " << (b - c).pValue() << endl; // insignificativement différents
+
+	cout << "a != d [ VRAI ] => " << (a!=d ? "VRAI" : "FAUX") << endl; // significativement différents
+	cout << "b != c [ FAUX ] => " << (b!=c ? "VRAI" : "FAUX") << endl; // insignificativement différents
 
 	cout << "a < d  [ VRAI ] => " << (a<d  ? "VRAI" : "FAUX") << endl; // a.valeur < d.valeur et a!=d
 	cout << "d < a  [ FAUX ] => " << (d<a  ? "VRAI" : "FAUX") << endl; // d.valeur > a.valeur et d!=a
-	cout << "c < b  [ FAUX ] => " << (c<b  ? "VRAI" : "FAUX") << endl; // insignificativement diff�rents
-	cout << "b < c  [ FAUX ] => " << (b<c  ? "VRAI" : "FAUX") << endl; // insignificativement diff�rents
+	cout << "c < b  [ FAUX ] => " << (c<b  ? "VRAI" : "FAUX") << endl; // insignificativement différents
+	cout << "b < c  [ FAUX ] => " << (b<c  ? "VRAI" : "FAUX") << endl; // insignificativement différents
 
 	cout << "a > d  [ FAUX ] => " << (a>d  ? "VRAI" : "FAUX") << endl; // a.valeur < d.valeur et a!=d
 	cout << "d > a  [ VRAI ] => " << (d>a  ? "VRAI" : "FAUX") << endl; // d.valeur > a.valeur et d!=a
-	cout << "c > b  [ FAUX ] => " << (c>b  ? "VRAI" : "FAUX") << endl; // insignificativement diff�rents
-	cout << "b > c  [ FAUX ] => " << (b>c  ? "VRAI" : "FAUX") << endl; // insignificativement diff�rents
+	cout << "c > b  [ FAUX ] => " << (c>b  ? "VRAI" : "FAUX") << endl; // insignificativement différents
+	cout << "b > c  [ FAUX ] => " << (b>c  ? "VRAI" : "FAUX") << endl; // insignificativement différents
 
 	cout << "a <= d [ VRAI ] => " << (a<=d ? "VRAI" : "FAUX") << endl; // a.valeur < d.valeur et a!=d
 	cout << "d <= a [ FAUX ] => " << (d<=a ? "VRAI" : "FAUX") << endl; // d.valeur > a.valeur et d!=a
-	cout << "c <= b [ VRAI ] => " << (c<=b ? "VRAI" : "FAUX") << endl; // insignificativement diff�rents
-	cout << "b <= c [ VRAI ] => " << (b<=c ? "VRAI" : "FAUX") << endl; // insignificativement diff�rents
+	cout << "c <= b [ VRAI ] => " << (c<=b ? "VRAI" : "FAUX") << endl; // insignificativement différents
+	cout << "b <= c [ VRAI ] => " << (b<=c ? "VRAI" : "FAUX") << endl; // insignificativement différents
 
 	cout << "a >= d [ FAUX ] => " << (a>=d ? "VRAI" : "FAUX") << endl; // a.valeur < d.valeur et a!=d
 	cout << "d >= a [ VRAI ] => " << (d>=a ? "VRAI" : "FAUX") << endl; // d.valeur > a.valeur et d!=a
-	cout << "c >= b [ VRAI ] => " << (c>=b ? "VRAI" : "FAUX") << endl; // insignificativement diff�rents
-	cout << "b >= c [ VRAI ] => " << (b>=c ? "VRAI" : "FAUX") << endl; // insignificativement diff�rents
+	cout << "c >= b [ VRAI ] => " << (c>=b ? "VRAI" : "FAUX") << endl; // insignificativement différents
+	cout << "b >= c [ VRAI ] => " << (b>=c ? "VRAI" : "FAUX") << endl; // insignificativement différents
 
 	cout << endl;
 
@@ -177,12 +173,12 @@ void test_incertitude_U_egal_RI(void)
 void test_incertitude_w0_FiltrePasseBande(void)
 {
 	CMesure L(1.08 / 1000.0, 5.0, 'P');			// 1.08 mH
-	CMesure Cu(470.0 / 1000000000.0, 5.0, 'P');	// 470.0 nF
+	CMesure Cu(470.0 / 1000000000.0, 10.0, 'P');	// 470.0 nF
 
 	CMesure C = 2.0 * Cu;
 
-	CMesure R1(10.0, 5.0, 'P');		// 10.0 Ohm
-	CMesure R2(100.0, 5.0, 'P');	// 100.0 Ohm
+	CMesure R1(10.0, 10.0, 'P');		// 10.0 Ohm
+	CMesure R2(100.0, 10.0, 'P');	// 100.0 Ohm
 
 	CMesure w0 = 1.0 / sqrt(L * C);		// rad/s
 	CMesure f0 = w0 / (2.0 * M_PI);		// Hz
@@ -306,9 +302,9 @@ void test_incertitude_filtrage_prem_ordre_z(void)
 int main(void)
 {
 
-	// benchMark1();
+	benchMark1();
 	// test_incertitude_U_egal_RI();
-	test_incertitude_w0_FiltrePasseBande();
+	// test_incertitude_w0_FiltrePasseBande();
 
 	// test_incertitude_filtrage_prem_ordre();
 	// test_incertitude_filtrage_prem_ordre_z();

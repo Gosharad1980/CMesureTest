@@ -1,6 +1,6 @@
 
 
-Out_eq1 = ((1.0 - fac) * Out_eq1_zm1) + (fac *  Meas               ); // equation 1
+Out_eq1 = ((1.0 - fac) * Out_eq1_zm1) + (fac *  Meas); // equation 1
 
 U²(Out_eq1) = U²((1.0 - fac) * Out_eq1_zm1) + U²(fac * Meas)
 U²(Out_eq1) = U²(1.0 - fac) * Out_eq1_zm1² + (1.0 - fac)² * U²(Out_eq1_zm1) + U²(fac) * Meas² + fac² * U²(Meas)
@@ -16,7 +16,7 @@ U²(Out_eq1) - U²(Out_eq1_zm1) = (1.0 - fac)² * ( U²(Out_eq1_zm1) - U²(Out_e
 
 
 
-Out_eq2 = (              Out_eq2_zm1) + (fac * (Meas - Out_eq2_zm1)); // equation 2
+Out_eq2 = (Out_eq2_zm1) + (fac * (Meas - Out_eq2_zm1)); // equation 2
 
 U²(Out_eq2) = U²(Out_eq2_zm1) + U²(fac * (Meas - Out_eq2_zm1))
 U²(Out_eq2) = U²(Out_eq2_zm1) + U²(fac) * (Meas - Out_eq2_zm1)² + fac² * U²(Meas - Out_eq2_zm1)
@@ -30,7 +30,7 @@ U²(Out_eq2) - U²(Out_eq2_zm1) = (1.0 + fac²) * ( U²(Out_eq2_zm1) - U²(Out_e
 [U²(Out_eq2) - U²(Out_eq2_zm1)] / [U²(Out_eq2_zm1) - U²(Out_eq2_zm2)] = (1.0 + fac²) > 1.0
 
 
-Out_eq1 = ((1.0 - fac) * Out_eq1_zm1) + (fac *  Meas               ); // equation 3
+Out_eq1 = ((1.0 - fac) * Out_eq1_zm1) + (fac *  Meas); // equation 3
 Out_eq3 = Out_eq1_zm3 - fac * Out_eq1_zm3 + fac *  Meas
 U²(Out_eq3) = U²(Out_eq3_zm1) + U²(fac * Out_eq3_zm1) + U²(fac *  Meas)
 U²(Out_eq3) = U²(Out_eq3_zm1) + fac² * U²(Out_eq3_zm1) + fac² * U²(Meas)
