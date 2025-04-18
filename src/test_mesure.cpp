@@ -16,6 +16,26 @@
 
 using namespace std;
 
+void test_pValues(void)
+{
+	CMesure a = CMesure(0.5, 0.1);
+	CMesure b = CMesure(1.0, 0.1);
+	CMesure c = CMesure(1.1, 0.1);
+	CMesure d = CMesure(1.5, 0.1);
+	CMesure e = CMesure(0.1, 1.0);
+
+	cout << "a = " << a << endl;
+	cout << "b = " << b << endl;
+	cout << "c = " << c << endl;
+	cout << "d = " << d << "\td.pValue() = " << d.pValue() << endl;
+	cout << "e = " << e << "\te.pValue() = " << e.pValue() << endl;
+
+	cout << "a == d [ FAUX ] => " << (a==d ? "VRAI" : "FAUX") << endl; // significativement différents
+	cout << "(a - d).pValue() = " << (a - d).pValue() << endl; // significativement différents
+
+	cout << "b == c [ VRAI ] => " << (b==c ? "VRAI" : "FAUX") << endl; // insignificativement différents
+	cout << "(b - c).pValue() = " << (b - c).pValue() << endl; // insignificativement différents
+}
 
 void benchMark1(void)
 {
@@ -98,18 +118,15 @@ void benchMark1(void)
 	cout << "a = " << a << endl;
 	cout << "b = " << b << endl;
 	cout << "c = " << c << endl;
-	cout << "d = " << d << "\td.pValue() = " << d.pValue() << endl;
-	cout << "e = " << e << "\te.pValue() = " << e.pValue() << endl;
+	cout << "d = " << d << endl;
+	cout << "e = " << e << endl;
 	
 
 
 	cout << endl;
 
 	cout << "a == d [ FAUX ] => " << (a==d ? "VRAI" : "FAUX") << endl; // significativement différents
-	cout << "(a - d).pValue() = " << (a - d).pValue() << endl; // significativement différents
-
 	cout << "b == c [ VRAI ] => " << (b==c ? "VRAI" : "FAUX") << endl; // insignificativement différents
-	cout << "(b - c).pValue() = " << (b - c).pValue() << endl; // insignificativement différents
 
 	cout << "a != d [ VRAI ] => " << (a!=d ? "VRAI" : "FAUX") << endl; // significativement différents
 	cout << "b != c [ FAUX ] => " << (b!=c ? "VRAI" : "FAUX") << endl; // insignificativement différents
@@ -302,7 +319,8 @@ void test_incertitude_filtrage_prem_ordre_z(void)
 int main(void)
 {
 
-	benchMark1();
+	// benchMark1();
+	test_pValues();
 	// test_incertitude_U_egal_RI();
 	// test_incertitude_w0_FiltrePasseBande();
 
