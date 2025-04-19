@@ -47,7 +47,7 @@ U^2(OutEq1_{n}) - U^2(OutEq1_{n-1}) & = (1.0 - fac)^2 * U^2(OutEq1_{n-1}) + \can
 
 $$\frac{U^2(OutEq1_{n}) - U^2(OutEq1_{n-1})}{U^2(OutEq1_{n-1}) - U^2(OutEq1_{n-2})}={\color{LimeGreen}(1.0 - fac)² < 1.0}$$
 
-Equation 1 du filtre passe bas
+Equation 2 du filtre passe bas
 -------------------------------
 
 Cette version de la formule du filtre passe bas à son incertitude de mesure qui diverge
